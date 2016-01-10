@@ -7,11 +7,13 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
@@ -31,8 +33,22 @@ public class Calculator extends JFrame {
   private JMenuItem view;
   private JMenuItem about;
   
-  private JTextField display;
- 
+  private JTextArea display;
+  
+  private JButton seven;
+  private JButton eight;
+  private JButton nine;
+  
+  private JButton four;
+  private JButton five;
+  private JButton six;
+  
+  private JButton one;
+  private JButton two;
+  private JButton three;
+  
+  
+
   
   public static void main(String[] args){
     try{
@@ -47,9 +63,11 @@ public class Calculator extends JFrame {
     super("Calculator");
     sendMenuBar();
     sendDisplay();
+    sendButtons();
     sendUI(this);
   }
   
+
   private void sendMenuBar() {
     menuBar = new JMenuBar();
     file = new JMenu(" File ");
@@ -82,8 +100,8 @@ public class Calculator extends JFrame {
       @Override
       public void actionPerformed(ActionEvent arg0) {
         // TODO Auto-generated method stub
-        String temp = "";
-        StringSelection string = new StringSelection(temp);
+        String tempDisplay = display.getText();
+        StringSelection string = new StringSelection(tempDisplay);
         Clipboard system = Toolkit.getDefaultToolkit().getSystemClipboard();
         system.setContents(string, string);
       }
@@ -119,13 +137,217 @@ public class Calculator extends JFrame {
   }
   
   private void sendDisplay() {
-    display = new JTextField("0");
-    display.setBounds(10, 10, 324, 40);
+    display = new JTextArea("0");
+    display.setBounds(10, 10, 324, 50);
     display.setEditable(false);
-    display.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+    //display.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+    //display.setText("0");
     display.setFont(new Font("Arial", Font.PLAIN, 35));
     add(display);
     
+  }
+  private void sendButtons() {
+    seven = new JButton("7");
+    seven.setBounds(10, 70, 65, 65);
+    seven.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (display.getText().length() > 15)
+          return;
+        if (display.getText().equalsIgnoreCase("0")) {
+          display.setText("7");
+          return;
+        }
+        display.setText(display.getText() + "7");
+        
+      }
+      
+      
+    });
+    add(seven);
+    
+    
+    
+    eight = new JButton("8");
+    eight.setBounds(82, 70, 65, 65);
+    eight.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (display.getText().length() > 15)
+          return;
+        if (display.getText().equalsIgnoreCase("0")) {
+          display.setText("8");
+          return;
+        }
+        display.setText(display.getText() + "8");
+        
+      }
+      
+      
+    });
+    add(eight);
+    
+    nine = new JButton("9");
+    nine.setBounds(154, 70, 65, 65);
+    nine.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (display.getText().length() > 15)
+          return;
+        if (display.getText().equalsIgnoreCase("0")) {
+          display.setText("9");
+          return;
+        }
+        display.setText(display.getText() + "9");
+        
+      }
+      
+      
+    });
+    add(nine);
+    
+    nine = new JButton("9");
+    nine.setBounds(154, 70, 65, 65);
+    nine.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (display.getText().length() > 15)
+          return;
+        if (display.getText().equalsIgnoreCase("0")) {
+          display.setText("9");
+          return;
+        }
+        display.setText(display.getText() + "9");
+        
+      }
+      
+      
+    });
+    add(nine);
+    
+    four = new JButton("4");
+    four.setBounds(10, 140, 65, 65);
+    four.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (display.getText().length() > 15)
+          return;
+        if (display.getText().equalsIgnoreCase("0")) {
+          display.setText("4");
+          return;
+        }
+        display.setText(display.getText() + "4");
+        
+      }
+      
+      
+    });
+    add(four);
+    
+    five = new JButton("5");
+    five.setBounds(82, 140, 65, 65);
+    five.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (display.getText().length() > 15)
+          return;
+        if (display.getText().equalsIgnoreCase("0")) {
+          display.setText("5");
+          return;
+        }
+        display.setText(display.getText() + "5");
+        
+      }
+      
+      
+    });
+    add(five);
+    
+    six = new JButton("6");
+    six.setBounds(154, 140, 65, 65);
+    six.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (display.getText().length() > 15)
+          return;
+        if (display.getText().equalsIgnoreCase("0")) {
+          display.setText("6");
+          return;
+        }
+        display.setText(display.getText() + "6");
+        
+      }
+      
+      
+    });
+    add(six);
+    
+    one = new JButton("1");
+    one.setBounds(10, 210, 65, 65);
+    one.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (display.getText().length() > 15)
+          return;
+        if (display.getText().equalsIgnoreCase("0")) {
+          display.setText("1");
+          return;
+        }
+        display.setText(display.getText() + "1");
+        
+      }
+      
+      
+    });
+    add(one);
+    
+    two = new JButton("2");
+    two.setBounds(82, 210, 65, 65);
+    two.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (display.getText().length() > 15)
+          return;
+        if (display.getText().equalsIgnoreCase("0")) {
+          display.setText("2");
+          return;
+        }
+        display.setText(display.getText() + "2");
+        
+      }
+      
+      
+    });
+    add(two);
+    
+    three = new JButton("3");
+    three.setBounds(154, 210, 65, 65);
+    three.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (display.getText().length() > 15)
+          return;
+        if (display.getText().equalsIgnoreCase("0")) {
+          display.setText("3");
+          return;
+        }
+        display.setText(display.getText() + "3");
+        
+      }
+      
+      
+    });
+    add(three);
   }
   
   private void sendUI(Calculator app) {
