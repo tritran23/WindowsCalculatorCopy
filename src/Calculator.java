@@ -329,6 +329,9 @@ public class Calculator extends JFrame {
 
       @Override
       public void actionPerformed(ActionEvent e) {
+        first = null;
+        operation = null;
+        second = null;
         display.setText("0");
         
       }
@@ -353,6 +356,13 @@ public class Calculator extends JFrame {
           calculate(first, second, operation);
         }
         
+        if (display.getText().endsWith(".0")){
+          display.setText(display.getText().replace(".0", ""));
+        }
+
+        System.out.println(first);
+        System.out.println(operation);
+        System.out.println(second);
       }
       
       
@@ -360,24 +370,23 @@ public class Calculator extends JFrame {
     add(equals);
   }
   
-  private void calculate(String first, String second, Character op){
-    switch (op){
-      case '+':
+  private void calculate(String fir, String sec, Character op){
+    if (op == '+'){
       display.setText(Double.toString
-          (Double.parseDouble(first) + Double.parseDouble(second)));
-      
-      case '-':
+          (Double.parseDouble(fir) + Double.parseDouble(sec)));
+    } else if (op == '-'){
         display.setText(Double.toString
-            (Double.parseDouble(first) - Double.parseDouble(second)));
-      
-      case '*':
+            (Double.parseDouble(fir) - Double.parseDouble(sec)));
+    }else if (op == '*'){
         display.setText(Double.toString
-            (Double.parseDouble(first) * Double.parseDouble(second)));
-      
-      case '/':
+            (Double.parseDouble(fir) * Double.parseDouble(sec)));
+    }else if (op == '/'){
         display.setText(Double.toString
-            (Double.parseDouble(first) / Double.parseDouble(second)));
+            (Double.parseDouble(fir) / Double.parseDouble(sec)));
       }
+    first = null;
+    operation = null;
+    second = null;
   }
   
   private ActionListener numberClickAction(String pressedNum) {
@@ -385,13 +394,31 @@ public class Calculator extends JFrame {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        if (display.getText().length() > 15)
+        
+        if (display.getText().length() > 17)
           return;
-        if (display.getText().equalsIgnoreCase("0")) {
+        if (display.getText().equalsIgnoreCase("0") ||
+            first == null) {
           display.setText(pressedNum);
-          return;
-        }
+        }else{
         display.append(pressedNum);
+        }
+        if (operation == null){
+          if (first == null){
+            first = pressedNum;
+          }else{
+            first = first + pressedNum;
+          }
+        }else if (second == null) {
+          second = pressedNum;
+        }else{
+          second = second + pressedNum;
+        }
+
+        
+        System.out.println(first);
+        System.out.println(operation);
+        System.out.println(second);
         
       }
     }; 
