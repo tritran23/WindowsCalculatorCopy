@@ -237,8 +237,17 @@ public class Calculator extends JFrame {
         if (display.getText().contains(".")) 
           return;
         display.append(".");
-        
+        if (second == null){
+          if (first == null){
+            first = "0.";
+          } else {
+            first = first + ".";
+          }
+        } else{
+          second = second + ".";
+        }
       }
+      
       
       
     });
