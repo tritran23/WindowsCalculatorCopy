@@ -47,6 +47,20 @@ public class Calculator extends JFrame {
   private JButton two;
   private JButton three;
   
+  private JButton zero;
+  private JButton decimal;
+  private JButton posneg;
+  
+  private JButton divide;
+  private JButton multiply;
+  private JButton subtract;
+  private JButton add;
+  
+  private JButton clear;
+  private JButton equals;
+  
+  
+  
   
 
   
@@ -159,7 +173,7 @@ public class Calculator extends JFrame {
           display.setText("7");
           return;
         }
-        display.setText(display.getText() + "7");
+        display.append("7");
         
       }
       
@@ -181,7 +195,7 @@ public class Calculator extends JFrame {
           display.setText("8");
           return;
         }
-        display.setText(display.getText() + "8");
+        display.append("8");
         
       }
       
@@ -201,7 +215,7 @@ public class Calculator extends JFrame {
           display.setText("9");
           return;
         }
-        display.setText(display.getText() + "9");
+        display.append("9");
         
       }
       
@@ -209,25 +223,6 @@ public class Calculator extends JFrame {
     });
     add(nine);
     
-    nine = new JButton("9");
-    nine.setBounds(154, 70, 65, 65);
-    nine.addActionListener(new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        if (display.getText().length() > 15)
-          return;
-        if (display.getText().equalsIgnoreCase("0")) {
-          display.setText("9");
-          return;
-        }
-        display.setText(display.getText() + "9");
-        
-      }
-      
-      
-    });
-    add(nine);
     
     four = new JButton("4");
     four.setBounds(10, 140, 65, 65);
@@ -241,7 +236,7 @@ public class Calculator extends JFrame {
           display.setText("4");
           return;
         }
-        display.setText(display.getText() + "4");
+        display.append("4");
         
       }
       
@@ -261,7 +256,7 @@ public class Calculator extends JFrame {
           display.setText("5");
           return;
         }
-        display.setText(display.getText() + "5");
+        display.append("5");
         
       }
       
@@ -281,7 +276,7 @@ public class Calculator extends JFrame {
           display.setText("6");
           return;
         }
-        display.setText(display.getText() + "6");
+        display.append("6");
         
       }
       
@@ -301,7 +296,7 @@ public class Calculator extends JFrame {
           display.setText("1");
           return;
         }
-        display.setText(display.getText() + "1");
+        display.append("1");
         
       }
       
@@ -321,7 +316,7 @@ public class Calculator extends JFrame {
           display.setText("2");
           return;
         }
-        display.setText(display.getText() + "2");
+        display.append("2");
         
       }
       
@@ -341,19 +336,191 @@ public class Calculator extends JFrame {
           display.setText("3");
           return;
         }
-        display.setText(display.getText() + "3");
+        display.append("3");
         
       }
       
       
     });
     add(three);
+    
+    zero = new JButton("0");
+    zero.setBounds(10, 280, 65, 65);
+    zero.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (display.getText().length() > 15)
+          return;
+        if (display.getText().equalsIgnoreCase("0")) {
+          display.setText("0");
+          return;
+        }
+        display.append("0");
+        
+      }
+      
+      
+    });
+    add(zero);
+    
+    decimal = new JButton(".");
+    decimal.setBounds(82, 280, 65, 65);
+    decimal.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (display.getText().contains(".")) 
+          return;
+        display.append(".");
+        
+      }
+      
+      
+    });
+    add(decimal);
+    
+    posneg = new JButton("+/-");
+    posneg.setBounds(154, 280, 65, 65);
+    posneg.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (display.getText().equalsIgnoreCase("0")) 
+          return;
+        
+        display.setText(Double.toString
+            (Double.parseDouble(display.getText()) * (-1)));
+        //replaces the new double number with its int
+        if (display.getText().endsWith(".0")){
+          display.setText(display.getText().replace(".0", ""));
+        }
+        
+      }
+      
+      
+    });
+    add(posneg);
+    
+    divide = new JButton("/");
+    divide.setBounds(226, 70, 65, 65);
+    divide.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (display.getText().length() > 15)
+          return;
+        if (display.getText().equalsIgnoreCase("0")) {
+          display.setText("3");
+          return;
+        }
+        display.append("3");
+        
+      }
+      
+      
+    });
+    add(divide);
+    
+    multiply = new JButton("*");
+    multiply.setBounds(226, 140, 65, 65);
+    multiply.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (display.getText().length() > 15)
+          return;
+        if (display.getText().equalsIgnoreCase("0")) {
+          display.setText("4");
+          return;
+        }
+        display.append("4");
+        
+      }
+      
+      
+    });
+    add(multiply);
+    
+    subtract = new JButton("-");
+    subtract.setBounds(226, 210, 65, 65);
+    subtract.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (display.getText().length() > 15)
+          return;
+        if (display.getText().equalsIgnoreCase("0")) {
+          display.setText("3");
+          return;
+        }
+        display.append("3");
+        
+      }
+      
+      
+    });
+    add(subtract);
+    
+    add = new JButton("+");
+    add.setBounds(226, 280, 65, 65);
+    add.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (display.getText().length() > 15)
+          return;
+        if (display.getText().equalsIgnoreCase("0")) {
+          display.setText("0");
+          return;
+        }
+        display.append("0");
+        
+      }
+      
+      
+    });
+    add(this.add);
+    
+    clear = new JButton("C");
+    clear.setBounds(298, 70, 65, 135);
+    clear.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (display.getText().length() > 15)
+          return;
+        if (display.getText().equalsIgnoreCase("0")) {
+          display.setText("3");
+          return;
+        }
+        display.append("3");
+        
+      }
+      
+      
+    });
+    add(clear);
+    
+    equals = new JButton("=");
+    equals.setBounds(298, 210, 65, 135);
+    equals.addActionListener(new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        display.setText("");
+        
+      }
+      
+      
+    });
+    add(equals);
   }
   
   private void sendUI(Calculator app) {
     app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     app.setResizable(false);
-    app.setSize(350, 400);
+    app.setSize(400, 400);
     app.setLayout(null);
     app.setLocationRelativeTo(null);
     app.setVisible(true);
