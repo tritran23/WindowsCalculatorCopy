@@ -59,7 +59,9 @@ public class Calculator extends JFrame {
   private JButton clear;
   private JButton equals;
   
-  
+  private String first;
+  private Character operation;
+  private String second;
   
   
 
@@ -152,7 +154,7 @@ public class Calculator extends JFrame {
   
   private void sendDisplay() {
     display = new JTextArea("0");
-    display.setBounds(10, 10, 324, 50);
+    display.setBounds(10, 10, 351, 50);
     display.setEditable(false);
     //display.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     //display.setText("0");
@@ -160,208 +162,70 @@ public class Calculator extends JFrame {
     add(display);
     
   }
+  
+  private void assignOperation(Character s){
+    if (operation == null){
+      operation = s;
+      display.append(s.toString());
+    } else{
+      display.setText(display.getText().replace(operation, s));
+      operation = s;
+    }
+    
+  }
+    
   private void sendButtons() {
     seven = new JButton("7");
     seven.setBounds(10, 70, 65, 65);
-    seven.addActionListener(new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        if (display.getText().length() > 15)
-          return;
-        if (display.getText().equalsIgnoreCase("0")) {
-          display.setText("7");
-          return;
-        }
-        display.append("7");
-        
-      }
-      
-      
-    });
+    seven.addActionListener(numberClickAction("7"));
     add(seven);
     
     
     
     eight = new JButton("8");
     eight.setBounds(82, 70, 65, 65);
-    eight.addActionListener(new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        if (display.getText().length() > 15)
-          return;
-        if (display.getText().equalsIgnoreCase("0")) {
-          display.setText("8");
-          return;
-        }
-        display.append("8");
-        
-      }
-      
-      
-    });
+    eight.addActionListener(numberClickAction("8"));
     add(eight);
     
     nine = new JButton("9");
     nine.setBounds(154, 70, 65, 65);
-    nine.addActionListener(new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        if (display.getText().length() > 15)
-          return;
-        if (display.getText().equalsIgnoreCase("0")) {
-          display.setText("9");
-          return;
-        }
-        display.append("9");
-        
-      }
-      
-      
-    });
+    nine.addActionListener(numberClickAction("9"));
     add(nine);
     
     
     four = new JButton("4");
     four.setBounds(10, 140, 65, 65);
-    four.addActionListener(new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        if (display.getText().length() > 15)
-          return;
-        if (display.getText().equalsIgnoreCase("0")) {
-          display.setText("4");
-          return;
-        }
-        display.append("4");
-        
-      }
-      
-      
-    });
+    four.addActionListener(numberClickAction("4"));
     add(four);
     
     five = new JButton("5");
     five.setBounds(82, 140, 65, 65);
-    five.addActionListener(new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        if (display.getText().length() > 15)
-          return;
-        if (display.getText().equalsIgnoreCase("0")) {
-          display.setText("5");
-          return;
-        }
-        display.append("5");
-        
-      }
-      
-      
-    });
+    five.addActionListener(numberClickAction("5"));
     add(five);
     
     six = new JButton("6");
     six.setBounds(154, 140, 65, 65);
-    six.addActionListener(new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        if (display.getText().length() > 15)
-          return;
-        if (display.getText().equalsIgnoreCase("0")) {
-          display.setText("6");
-          return;
-        }
-        display.append("6");
-        
-      }
-      
-      
-    });
+    six.addActionListener(numberClickAction("6"));
     add(six);
     
     one = new JButton("1");
     one.setBounds(10, 210, 65, 65);
-    one.addActionListener(new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        if (display.getText().length() > 15)
-          return;
-        if (display.getText().equalsIgnoreCase("0")) {
-          display.setText("1");
-          return;
-        }
-        display.append("1");
-        
-      }
-      
-      
-    });
+    one.addActionListener(numberClickAction("1"));
     add(one);
     
     two = new JButton("2");
     two.setBounds(82, 210, 65, 65);
-    two.addActionListener(new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        if (display.getText().length() > 15)
-          return;
-        if (display.getText().equalsIgnoreCase("0")) {
-          display.setText("2");
-          return;
-        }
-        display.append("2");
-        
-      }
-      
-      
-    });
+    two.addActionListener(numberClickAction("2"));
     add(two);
     
     three = new JButton("3");
     three.setBounds(154, 210, 65, 65);
-    three.addActionListener(new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        if (display.getText().length() > 15)
-          return;
-        if (display.getText().equalsIgnoreCase("0")) {
-          display.setText("3");
-          return;
-        }
-        display.append("3");
-        
-      }
-      
-      
-    });
+    three.addActionListener(numberClickAction("3"));
     add(three);
     
     zero = new JButton("0");
     zero.setBounds(10, 280, 65, 65);
-    zero.addActionListener(new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        if (display.getText().length() > 15)
-          return;
-        if (display.getText().equalsIgnoreCase("0")) {
-          display.setText("0");
-          return;
-        }
-        display.append("0");
-        
-      }
-      
-      
-    });
+    zero.addActionListener(numberClickAction("0"));
     add(zero);
     
     decimal = new JButton(".");
@@ -408,13 +272,7 @@ public class Calculator extends JFrame {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        if (display.getText().length() > 15)
-          return;
-        if (display.getText().equalsIgnoreCase("0")) {
-          display.setText("3");
-          return;
-        }
-        display.append("3");
+        assignOperation('/');
         
       }
       
@@ -428,15 +286,10 @@ public class Calculator extends JFrame {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        if (display.getText().length() > 15)
-          return;
-        if (display.getText().equalsIgnoreCase("0")) {
-          display.setText("4");
-          return;
-        }
-        display.append("4");
+        assignOperation('*');
         
-      }
+        }
+        
       
       
     });
@@ -448,13 +301,7 @@ public class Calculator extends JFrame {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        if (display.getText().length() > 15)
-          return;
-        if (display.getText().equalsIgnoreCase("0")) {
-          display.setText("3");
-          return;
-        }
-        display.append("3");
+        assignOperation('-');
         
       }
       
@@ -468,13 +315,7 @@ public class Calculator extends JFrame {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        if (display.getText().length() > 15)
-          return;
-        if (display.getText().equalsIgnoreCase("0")) {
-          display.setText("0");
-          return;
-        }
-        display.append("0");
+        assignOperation('+');
         
       }
       
@@ -488,17 +329,10 @@ public class Calculator extends JFrame {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        if (display.getText().length() > 15)
-          return;
-        if (display.getText().equalsIgnoreCase("0")) {
-          display.setText("3");
-          return;
-        }
-        display.append("3");
+        display.setText("0");
         
       }
-      
-      
+        
     });
     add(clear);
     
@@ -508,7 +342,16 @@ public class Calculator extends JFrame {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        display.setText("");
+        if (operation == null){
+          return;
+        }else if (second == null){
+          //if there's no second argument in the equation
+          //then it will take the first argument as the second
+          
+          calculate(first, first, operation);
+        }else{
+          calculate(first, second, operation);
+        }
         
       }
       
@@ -517,10 +360,48 @@ public class Calculator extends JFrame {
     add(equals);
   }
   
+  private void calculate(String first, String second, Character op){
+    switch (op){
+      case '+':
+      display.setText(Double.toString
+          (Double.parseDouble(first) + Double.parseDouble(second)));
+      
+      case '-':
+        display.setText(Double.toString
+            (Double.parseDouble(first) - Double.parseDouble(second)));
+      
+      case '*':
+        display.setText(Double.toString
+            (Double.parseDouble(first) * Double.parseDouble(second)));
+      
+      case '/':
+        display.setText(Double.toString
+            (Double.parseDouble(first) / Double.parseDouble(second)));
+      }
+  }
+  
+  private ActionListener numberClickAction(String pressedNum) {
+    ActionListener action = new ActionListener() {
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (display.getText().length() > 15)
+          return;
+        if (display.getText().equalsIgnoreCase("0")) {
+          display.setText(pressedNum);
+          return;
+        }
+        display.append(pressedNum);
+        
+      }
+    }; 
+    return action;
+  }
+  
   private void sendUI(Calculator app) {
     app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     app.setResizable(false);
-    app.setSize(400, 400);
+    app.setSize(380, 400);
     app.setLayout(null);
     app.setLocationRelativeTo(null);
     app.setVisible(true);
