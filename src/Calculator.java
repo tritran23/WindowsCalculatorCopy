@@ -259,20 +259,37 @@ public class Calculator extends JFrame {
 
       @Override
       public void actionPerformed(ActionEvent e) {
-        if (display.getText().equalsIgnoreCase("0")) 
+        if ((display.getText().equalsIgnoreCase("0")) ||
+            (first == null) || (first != null && 
+            operation != null && second == null))
           return;
         
-        display.setText(Double.toString
+        if (second == null) {
+          display.setText(Double.toString
             (Double.parseDouble(display.getText()) * (-1)));
         //replaces the new double number with its int
         if (display.getText().endsWith(".0")){
           display.setText(display.getText().replace(".0", ""));
         }
+        first = display.getText();
+        }
+        else{
+          String temp = second;
+          second = Double.toString
+              (Double.parseDouble(second) * (-1));
+          
+          if (second.endsWith(".0")){
+            second = second.replace(".0", "");
+          }
+          
+          display.setText(display.getText().replace(temp, second));
+        } 
+        }
         
-      }
+      });
       
       
-    });
+    
     add(posneg);
     
     divide = new JButton("/");
