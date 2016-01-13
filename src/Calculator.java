@@ -282,7 +282,15 @@ public class Calculator extends JFrame {
             second = second.replace(".0", "");
           }
           
-          display.setText(display.getText().replace(temp, second));
+          if (second.startsWith("-")){
+            
+          display.setText(display.getText().replace(temp, "(" + second + ")"));
+          } 
+  
+            else {
+            display.setText(display.getText().replace("(", "").replace(")", "")
+                .replace(temp, second));
+          }
         } 
         }
         
